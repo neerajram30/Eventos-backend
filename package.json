@@ -1,0 +1,27 @@
+{
+  "name": "events-backend",
+  "version": "1.0.0",
+  "description": "Events registration website backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neerajram30/Events-backend.git"
+  },
+  "author": "Neeraj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neerajram30/Events-backend/issues"
+  },
+  "homepage": "https://github.com/neerajram30/Events-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  }
+}
