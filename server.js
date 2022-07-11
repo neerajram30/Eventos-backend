@@ -5,6 +5,8 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
+const user = require('./routes/api/user')
+
 app.listen(PORT,()=>{
     console.log("Connected on port "+PORT);
 })
@@ -16,3 +18,6 @@ mongoose
   )
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log("mongodb wrror"+err));
+
+//Routes
+app.use("/api/user",user)
