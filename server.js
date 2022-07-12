@@ -1,21 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-const session = require("express-session")
+const session = require("express-session");
+const MongoDBSession=require('connect-mongodb-session')(session)
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
 const user = require('./routes/api/user')
+// const events = require('./routes/api/events')
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const store = new MongoDBSession({
+  uri:MONGO_URI,
+  collection:"sessions"
+})
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
+  store : store
 }))
 
 app.listen(PORT,()=>{
@@ -37,3 +46,4 @@ app.get("/", (req, res) => {
   
 //Routes
 app.use("/api/user",user)
+// app.use("/api/events",events)
