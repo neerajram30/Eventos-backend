@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User")
 const auth = require("../../middlewares/auth")
 
+//user login 
 router.post(
     "/login",
     [
@@ -37,6 +38,7 @@ router.post(
             if (user && isMatch) {
                 req.session.loggedIn = true
                 req.session.name = user.username
+                req.session.user_id = user.id
                 console.log(req.session);
                 return res.status(200).json({
                     message: "login success"
@@ -48,18 +50,16 @@ router.post(
                 message: "Server Error"
             });
         }
-    }
-);
+});
 
-router.post(
-    "/register",
-    [
-        check("username", "Please Enter a Valid Username")
-            .not()
-            .isEmpty(),
-        check("email", "Please enter a valid email").isEmail(),
-        check("password", "Please enter a valid password").isLength({
-            min: 6
+//User registration
+router.post( "/register",[
+    check("username", "Please Enter a Valid Username")
+        .not()
+        .isEmpty(),
+    check("email", "Please enter a valid email").isEmail(),
+    check("password", "Please enter a valid password").isLength({
+        min: 6
         })
     ],
     async (req, res) => {
@@ -69,7 +69,6 @@ router.post(
                 errors: errors.array()
             });
         }
-
         const {
             username,
             email,
@@ -99,22 +98,21 @@ router.post(
             console.log(err.message);
             res.status(500).send("Error in Saving");
         }
-    }
-);
+});
 
-
+//Testing
 router.get("/me", auth, async (req, res) => {
     res.json({ message: "logged in" });
     console.log(req.session);
 });
 
-router.get('/logout', (req, res) => {
+//User logout
+router.get('/logout', auth, (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return console.log(err);
         }
         res.json({ message: "logged out" });
-
     });
 });
 
