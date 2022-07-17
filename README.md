@@ -1,11 +1,5 @@
 Eventos backend
 ============
-[![GitHub Stars]](https://github.com/neerajram30/Eventos-backend/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/IgorAntun/node-chat.svg)](https://github.com/neerajram30/Eventos-backend/issues) 
-
-<!-- [![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)](https://github.com/neerajram30/Events-backend)  -->
-
-<!-- [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://github.com/neerajram30/Events-backend)  -->
-
 Eventos is a MERN stack application where users can create and list events.   
 
 <!-- ![Chat Preview](http://i.imgur.com/lgRe8z4.png) -->
