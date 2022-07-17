@@ -1,6 +1,6 @@
 Eventos backend
 ============
-[![GitHub Stars](https://img.shields.io/github/stars/IgorAntun/node-chat.svg)](https://github.com/neerajram30/Eventos-backend/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/IgorAntun/node-chat.svg)](https://github.com/neerajram30/Eventos-backend/issues) 
+[![GitHub Stars]](https://github.com/neerajram30/Eventos-backend/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/IgorAntun/node-chat.svg)](https://github.com/neerajram30/Eventos-backend/issues) 
 
 <!-- [![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)](https://github.com/neerajram30/Events-backend)  -->
 
