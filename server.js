@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoDBSession=require('connect-mongodb-session')(session)
@@ -13,6 +14,7 @@ const MONGO_URI = process.env.MONGO_URI;
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //Set up mongoDB store for storing sessions
 const store = new MongoDBSession({
