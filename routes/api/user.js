@@ -41,7 +41,8 @@ router.post(
                 req.session.user_id = user.id
                 console.log(req.session);
                 return res.status(200).json({
-                    message: "login success"
+                    message: "login success",
+                    user: req.session
                 });
             }
         } catch (e) {
