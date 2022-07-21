@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Events = require('../../models/Events')
-const auth = require('../../middlewares/auth')
-
+// const auth = require('../../middlewares/auth')
+const {protect} = require('../../middlewares/auth')
+const User = require('../../models/User.js')
 
 // Fetch all events data from database
 router.get('/', (req, res) => {
@@ -22,33 +23,25 @@ router.get('/', (req, res) => {
 })
 
 // Create events
-router.post('/create', auth, async (req, res) => {
-    const { title, startDate, endDate, createdAt, venue, description
+router.post('/create', protect, async (req, res) => {
+    const { createdAt, title, startDate, endDate, venue, description
     } = req.body
-    try {
-        let event = new Events({
+        const event = await Events.create({
             title,
             startDate,
             endDate,
             createdAt,
             venue,
             description,
-            creator: req.session.user_id
+            user: req.user.id,
         })
-        console.log(event);
-        await event.save();
-        res.status(200).send("Event created")
-
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).send("Error in Saving Events");
-
-    }
-})
+        res.status(200).json(event)
+    } 
+)
 
 //Fetch events accroding to user session
-router.get("/myevent", auth, (req, res) => {
-    Events.find({ creator: req.session.user_id }).then((event) => {
+router.get("/myevent", protect, (req, res) => {
+    Events.find({ user: req.user.id }).then((event) => {
         if (event) {
             res.status(200).json({
                 message: "Events successfully fetched",
@@ -62,8 +55,8 @@ router.get("/myevent", auth, (req, res) => {
 })
 
 //Delete events by id
-router.delete("/:id", auth, (req, res) => {
-    Events.deleteOne({ _id: req.params.id, creator: req.session.user_id }).then((response) => {
+router.delete("/:id", protect, (req, res) => {
+    Events.deleteOne({ _id: req.params.id, user: req.user.id }).then((response) => {
         console.log(response)
         if (response.n > 0) {
             res.status(200).json({ message: "sucessfully deteleted event" })
@@ -86,7 +79,7 @@ router.get("/:id", (req, res) => {
 });
 
 //Update event
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", protect, async (req, res) => {
     const { createdAt, title, startDate, endDate, venue, description
     } = req.body
     let event = new Events({
