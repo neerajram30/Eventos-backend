@@ -40,18 +40,15 @@ router.post('/create', protect, async (req, res) => {
 )
 
 //Fetch events accroding to user session
-router.get("/myevent", protect, (req, res) => {
-    Events.find({ user: req.user.id }).then((event) => {
+router.get("/myevent", protect, async (req, res) => {
+    const event = await Events.find({ user: req.user.id })
         if (event) {
-            res.status(200).json({
-                message: "Events successfully fetched",
-                events: event
-            });
+            res.status(200).json(event);
         }
         else {
             res.status(404).json({ message: "Events not found!" });
         }
-    }).catch(err => console.log(err))
+    
 })
 
 //Delete events by id
