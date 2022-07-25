@@ -16,20 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-//Set up mongoDB store for storing sessions
-const store = new MongoDBSession({
-  uri:MONGO_URI,
-  collection:"sessions"
-})
-
-//Set up session
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store : store
-}))
-
 //Express connection
 app.listen(PORT,()=>{
     console.log("Connected on port "+PORT);
