@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
     })
 })
 
-// Create events
+// Create event
 router.post('/create', protect, async (req, res) => {
     const { createdAt, title, startDate, endDate, venue, description
     } = req.body
