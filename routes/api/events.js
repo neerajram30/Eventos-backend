@@ -3,7 +3,6 @@ const router = express.Router();
 const Events = require('../../models/Events')
 // const auth = require('../../middlewares/auth')
 const {protect} = require('../../middlewares/auth')
-const User = require('../../models/User.js')
 
 // Fetch all events data from database
 router.get('/events', (req, res) => {
