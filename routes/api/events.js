@@ -6,7 +6,7 @@ const {protect} = require('../../middlewares/auth')
 const User = require('../../models/User.js')
 
 // Fetch all events data from database
-router.get('/', (req, res) => {
+router.get('/events', (req, res) => {
     Events.find().then((event) => {
         if (event) {
             res.status(200).json({
