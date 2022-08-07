@@ -52,7 +52,7 @@ router.get("/myevent", protect, async (req, res) => {
 })
 
 //Delete events by id
-router.delete("/:id", protect, (req, res) => {
+router.delete("/myevent/:id", protect, (req, res) => {
     Events.deleteOne({ _id: req.params.id, user: req.user.id }).then((response) => {
         console.log(response)
         if (response.n > 0) {
